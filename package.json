@@ -1,0 +1,45 @@
+{
+  "name": "ai-trading-genie",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:prod": "vite build --mode production",
+    "build:staging": "vite build --mode staging",
+    "preview": "vite preview",
+    "lint": "eslint --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write .",
+    "check:deps": "npm outdated",
+    "update:deps": "npm update",
+    "preview:prod": "vite preview --port 5000"
+  },
+  "dependencies": {
+    "@supabase/auth-helpers-react": "latest",
+    "@supabase/supabase-js": "latest",
+    "date-fns": "latest",
+    "ethers": "latest",
+    "framer-motion": "latest",
+    "lucide-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-hot-toast": "latest",
+    "react-router-dom": "latest",
+    "recharts": "latest",
+    "web3": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
+    "autoprefixer": "latest",
+    "eslint": "latest",
+    "eslint-plugin-react-hooks": "latest",
+    "eslint-plugin-react-refresh": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest",
+    "vite": "latest",
+    "prettier": "latest"
+  }
+}
