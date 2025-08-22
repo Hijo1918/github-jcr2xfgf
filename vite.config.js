@@ -15,7 +15,7 @@ export default defineConfig({
   ],
   build: {
     rollupOptions: {
-      external: ['react-chartjs-2'],
+      external: ['react-chartjs-2', 'swiper'],
     },
   },
 });
