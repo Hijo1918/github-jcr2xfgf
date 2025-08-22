@@ -1,5 +1,6 @@
 import React from 'react';
-import Card from '../components/Card'; 
+import Card from '../../components/Card'; // Adjusted path assuming src/components/Card
+import { Target, TrendingUp, TrendingDown, Clock } from '@heroicons/react/24/solid';
 
 const TradingStats = () => {
   const stats = [
@@ -8,7 +9,7 @@ const TradingStats = () => {
       value: '1,247',
       change: '+23',
       changeType: 'positive',
-      icon: 'Target',
+      icon: Target,
       period: 'this month',
     },
     {
@@ -16,7 +17,7 @@ const TradingStats = () => {
       value: '73.2%',
       change: '+2.1%',
       changeType: 'positive',
-      icon: 'TrendingUp',
+      icon: TrendingUp,
       period: 'vs last month',
     },
     {
@@ -24,7 +25,7 @@ const TradingStats = () => {
       value: '4.2h',
       change: '-0.8h',
       changeType: 'positive',
-      icon: 'Clock',
+      icon: Clock,
       period: 'vs last month',
     },
     {
@@ -32,7 +33,7 @@ const TradingStats = () => {
       value: '8.5%',
       change: '-1.2%',
       changeType: 'positive',
-      icon: 'TrendingDown',
+      icon: TrendingDown,
       period: 'improvement',
     },
     {
@@ -40,7 +41,7 @@ const TradingStats = () => {
       value: '2.34',
       change: '+0.12',
       changeType: 'positive',
-      icon: 'TrendingUp',
+      icon: TrendingUp,
       period: 'vs last month',
     },
     {
@@ -48,7 +49,7 @@ const TradingStats = () => {
       value: '1.87',
       change: '+0.05',
       changeType: 'positive',
-      icon: 'Target',
+      icon: Target,
       period: 'vs last month',
     },
   ];
@@ -63,11 +64,11 @@ const TradingStats = () => {
                 stat.changeType === 'positive' ? 'bg-green-50' : 'bg-red-50'
               }`}
             >
-              <span
-                className={`w-6 h-6 ${stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}`}
-              >
-                [{stat.icon}]
-              </span>
+              <stat.icon
+                className={`w-6 h-6 ${
+                  stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
+                }`}
+              />
             </div>
             <div className="text-right">
               <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
