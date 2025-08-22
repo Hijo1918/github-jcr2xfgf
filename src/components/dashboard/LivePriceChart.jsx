@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../components/Card'; // Card is in src/components/Card.js
+import Card from '../components/Card'; 
 
 const TradingStats = () => {
   const stats = [
