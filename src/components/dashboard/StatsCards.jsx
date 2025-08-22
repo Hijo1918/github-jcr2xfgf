@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../components/Card'; // Assuming Card is in src/components/Card
+import Card from '../components/Card'; // ✅ matches file name
 
 const StatsCards = () => {
   const stats = [
@@ -55,7 +55,9 @@ const StatsCards = () => {
               }`}
             >
               <span
-                className={`w-6 h-6 ${stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}`}
+                className={`w-6 h-6 ${
+                  stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
+                }`}
               >
                 [{stat.icon}]
               </span>
