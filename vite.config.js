@@ -15,7 +15,7 @@ export default defineConfig({
   ],
   build: {
     rollupOptions: {
-      external: ['react-chartjs-2', 'vite-plugin-svg-icons'], 
+      external: ['react-chartjs-2', 'vite-plugin-svg-icons',], 
     },
   },
 });
