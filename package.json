@@ -41,6 +41,7 @@
     "eslint": "latest",
     "eslint-plugin-react-hooks": "latest",
     "eslint-plugin-react-refresh": "latest",
+    "fast-glob": "latest",
     "postcss": "latest",
     "tailwindcss": "latest",
     "vite": "latest",
