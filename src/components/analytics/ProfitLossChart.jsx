@@ -1,5 +1,4 @@
 import React from 'react';
-import { ChartData, ChartOptions } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -13,14 +12,8 @@ import {
 // Register Chart.js components
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip);
 
-interface ProfitLossData {
-  date: string;
-  cumulative: number;
-  daily: number;
-};
-
-const ProfitLossChart: React.FC = () => {
-  const data: ProfitLossData[] = [
+const ProfitLossChart = () => {
+  const data = [
     { date: '2024-01-01', cumulative: 0, daily: 0 },
     { date: '2024-01-02', cumulative: 150, daily: 150 },
     { date: '2024-01-03', cumulative: 280, daily: 130 },
@@ -39,7 +32,7 @@ const ProfitLossChart: React.FC = () => {
   const cumulativeData = data.map((entry) => entry.cumulative);
   const dailyData = data.map((entry) => entry.daily);
 
-  const chartData: ChartData<'line'> = {
+  const chartData = {
     labels,
     datasets: [
       {
@@ -67,7 +60,7 @@ const ProfitLossChart: React.FC = () => {
     ],
   };
 
-  const chartOptions: ChartOptions<'line'> = {
+  const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
