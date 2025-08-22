@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../components/Card'; // Assuming Card is in src/components/Card.js
+import Card from '../components/Card'; // Assuming Card is in src/components/Card
 
 const StatsCards = () => {
   const stats = [
