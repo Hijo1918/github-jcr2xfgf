@@ -1,24 +1,21 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import vue from '@vitejs/plugin-vue';
+import svgIcons from 'vite-plugin-svg-icons';
 import path from 'path';
 
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
+  plugins: [
+    react(),
+    vue(),
+    svgIcons({
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
+      symbolId: 'icon-[dir]-[name]',
+    }),
+  ],
   build: {
     rollupOptions: {
-      output: {
-        manualChunks: {
-          // Example: split vendor code
-          react: ['react', 'react-dom'],
-        },
-      },
-      // You can also mark externals here if needed
-      // external: ['react-chartjs-2', 'chart.js']
+      external: ['react-chartjs-2'],
     },
   },
 });
