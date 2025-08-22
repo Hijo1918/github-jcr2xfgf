@@ -17,7 +17,7 @@ interface ProfitLossData {
   date: string;
   cumulative: number;
   daily: number;
-}
+};
 
 const ProfitLossChart: React.FC = () => {
   const data: ProfitLossData[] = [
