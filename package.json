@@ -16,6 +16,7 @@
     "preview:prod": "vite preview --port 5000"
   },
   "dependencies": {
+    "@heroicons/react": "latest",
     "@supabase/auth-helpers-react": "latest",
     "@supabase/supabase-js": "latest",
     "date-fns": "latest",
