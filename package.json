@@ -41,6 +41,7 @@
     "postcss": "latest",
     "tailwindcss": "latest",
     "vite": "latest",
+    "vite-plugin-svg-icons": "latest",
     "prettier": "latest"
   }
 }
