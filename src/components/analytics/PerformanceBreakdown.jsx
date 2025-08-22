@@ -1,4 +1,17 @@
 import React from 'react';
+import { Bar, Pie } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  PieController,
+  ArcElement,
+  Tooltip,
+} from 'chart.js';
+
+// Register Chart.js components
+ChartJS.register(BarElement, CategoryScale, LinearScale, PieController, ArcElement, Tooltip);
 
 const PerformanceBreakdown = () => {
   const monthlyData = [
@@ -19,117 +32,101 @@ const PerformanceBreakdown = () => {
 
   const COLORS = ['#3b82f6', '#22c55e', '#f59e0b', '#ef4444'];
 
+  // Monthly Performance Bar Chart
+  const monthlyChartData = {
+    labels: monthlyData.map((entry) => entry.month),
+    datasets: [
+      {
+        label: 'Profit',
+        data: monthlyData.map((entry) => entry.profit),
+        backgroundColor: '#3b82f6',
+        borderColor: '#3b82f6',
+        borderWidth: 1,
+        borderRadius: 4,
+      },
+    ],
+  };
+
+  const monthlyChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: '#6b7280', font: { size: 12 } },
+      },
+      y: {
+        grid: { color: '#f0f0f0', borderDash: [3, 3] },
+        ticks: {
+          color: '#6b7280',
+          font: { size: 12 },
+          callback: (value) => `$${value}`,
+        },
+      },
+    },
+    plugins: {
+      tooltip: {
+        backgroundColor: '#ffffff',
+        titleColor: '#374151',
+        bodyColor: '#374151',
+        borderColor: '#e5e7eb',
+        borderWidth: 1,
+        cornerRadius: 8,
+        callbacks: {
+          label: (context) => `Profit: $${context.parsed.y}`,
+        },
+      },
+    },
+  };
+
+  // Asset Distribution Pie Chart
+  const assetChartData = {
+    labels: assetData.map((entry) => entry.name),
+    datasets: [
+      {
+        data: assetData.map((entry) => entry.value),
+        backgroundColor: COLORS,
+        borderColor: ['#ffffff', '#ffffff', '#ffffff', '#ffffff'],
+        borderWidth: 2,
+      },
+    ],
+  };
+
+  const assetChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      tooltip: {
+        backgroundColor: '#ffffff',
+        titleColor: '#374151',
+        bodyColor: '#374151',
+        borderColor: '#e5e7eb',
+        borderWidth: 1,
+        cornerRadius: 8,
+        callbacks: {
+          label: (context) => {
+            const index = context.dataIndex;
+            const profit = assetData[index].profit;
+            return `${context.label}: ${context.parsed}% ($${profit})`;
+          },
+        },
+      },
+    },
+  };
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div className="card bg-white shadow rounded-lg p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-6">Monthly Performance</h3>
         <div className="h-64">
-          ```chartjs
-          {
-            "type": "bar",
-            "data": {
-              "labels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-              "datasets": [{
-                "label": "Profit",
-                "data": [1250, 890, 1680, 2100, 1450, 1920],
-                "backgroundColor": "#3b82f6",
-                "borderColor": "#3b82f6",
-                "borderWidth": 1,
-                "borderRadius": 4
-              }]
-            },
-            "options": {
-              "responsive": true,
-              "maintainAspectRatio": false,
-              "scales": {
-                "x": {
-                  "grid": {
-                    "display": false
-                  },
-                  "ticks": {
-                    "color": "#6b7280",
-                    "font": {
-                      "size": 12
-                    }
-                  }
-                },
-                "y": {
-                  "grid": {
-                    "color": "#f0f0f0",
-                    "borderDash": [3, 3]
-                  },
-                  "ticks": {
-                    "color": "#6b7280",
-                    "font": {
-                      "size": 12
-                    },
-                    "callback": function(value) {
-                      return "$" + value;
-                    }
-                  }
-                }
-              },
-              "plugins": {
-                "tooltip": {
-                  "backgroundColor": "#ffffff",
-                  "titleColor": "#374151",
-                  "bodyColor": "#374151",
-                  "borderColor": "#e5e7eb",
-                  "borderWidth": 1,
-                  "cornerRadius": 8,
-                  "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                  "callbacks": {
-                    "label": function(context) {
-                      return "Profit: $" + context.parsed.y;
-                    }
-                  }
-                }
-              }
-            }
-          }
-          ```
+          <Bar data={monthlyChartData} options={monthlyChartOptions} />
         </div>
       </div>
 
       <div className="card bg-white shadow rounded-lg p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-6">Asset Distribution</h3>
         <div className="h-64">
-          ```chartjs
-          {
-            "type": "pie",
-            "data": {
-              "labels": ["BTC", "ETH", "ADA", "SOL"],
-              "datasets": [{
-                "data": [45, 30, 15, 10],
-                "backgroundColor": ["#3b82f6", "#22c55e", "#f59e0b", "#ef4444"],
-                "borderColor": ["#ffffff", "#ffffff", "#ffffff", "#ffffff"],
-                "borderWidth": 2
-              }]
-            },
-            "options": {
-              "responsive": true,
-              "maintainAspectRatio": false,
-              "plugins": {
-                "tooltip": {
-                  "backgroundColor": "#ffffff",
-                  "titleColor": "#374151",
-                  "bodyColor": "#374151",
-                  "borderColor": "#e5e7eb",
-                  "borderWidth": 1,
-                  "cornerRadius": 8,
-                  "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-                  "callbacks": {
-                    "label": function(context) {
-                      const index = context.dataIndex;
-                      const profit = [3200, 2100, 890, 650][index];
-                      return `${context.label}: ${context.parsed}% ($${profit})`;
-                    }
-                  }
-                }
-              }
-            }
-          }
-          ```
+          <Pie data={assetChartData} options={assetChartOptions} />
         </div>
         <div className="mt-4 space-y-2">
           {assetData.map((asset, index) => (
