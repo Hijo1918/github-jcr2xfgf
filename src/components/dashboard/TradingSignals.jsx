@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Card from '../components/Card'; // From your list of 25 components
-import Button from '../components/Button'; // From your list of 25 components
+import Card from '../components/Card'; // 
+import Button from '../components/Button'; // 
 
 const TradingSignals = () => {
   const [signals, setSignals] = useState([]);
