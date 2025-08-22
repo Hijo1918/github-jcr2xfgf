@@ -1,7 +1,20 @@
 import React from 'react';
+import { ChartData, ChartOptions } from 'chart.js';
 
-const PerformanceMetrics = () => {
-  const data = [
+interface Metric {
+  label: string;
+  value: string;
+  change: string;
+}
+
+interface PerformanceData {
+  day: string;
+  profit: number;
+  trades: number;
+}
+
+const PerformanceMetrics: React.FC = () => {
+  const data: PerformanceData[] = [
     { day: 'Mon', profit: 120, trades: 8 },
     { day: 'Tue', profit: 85, trades: 6 },
     { day: 'Wed', profit: 200, trades: 12 },
@@ -11,12 +24,15 @@ const PerformanceMetrics = () => {
     { day: 'Sun', profit: 145, trades: 9 },
   ];
 
-  const metrics = [
+  const metrics: Metric[] = [
     { label: 'Total Trades', value: '156', change: '+12' },
     { label: 'Win Rate', value: '73.2%', change: '+2.1%' },
     { label: 'Avg Profit', value: '$45.80', change: '+$5.20' },
     { label: 'Max Drawdown', value: '8.5%', change: '-1.2%' },
   ];
+
+  const labels = data.map((entry) => entry.day);
+  const profitData = data.map((entry) => entry.profit);
 
   return (
     <div className="card bg-white shadow rounded-lg p-6">
@@ -101,10 +117,9 @@ const PerformanceMetrics = () => {
                 "borderColor": "#e5e7eb",
                 "borderWidth": 1,
                 "cornerRadius": 8,
-                "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
                 "callbacks": {
                   "label": function(context) {
-                    return `Profit: $${context.parsed.y}`;
+                    return "Profit: $" + context.parsed.y;
                   }
                 }
               }
