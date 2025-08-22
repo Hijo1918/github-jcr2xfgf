@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../components/Card'; // ✅ matches file name
+import Card from '../Card'; // ✅ matches file name
 
 const StatsCards = () => {
   const stats = [
